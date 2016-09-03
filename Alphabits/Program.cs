@@ -12,7 +12,6 @@ namespace Alphabits
         {
             ConsoleKeyInfo enteredKey;         
             Alphas alpha = new Alphas();
-            //int counter = 1;
             bool winner = false;
 
             Console.Write("Type all the letters of the alphabet consecutively. Hit Esc if you want to quit.\n");
