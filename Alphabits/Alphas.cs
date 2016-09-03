@@ -8,14 +8,29 @@ namespace Alphabits
 {
     public class Alphas
     {
+        private string input;
+        private int counter = 1;
         public string[] alphabet = new string[26] { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
-        public void addChar()
+
+        public void addChar(string entry)
         {
-            //?
+            input = entry;
         }
         public void listLength()
         {
-            //?
+            counter += 1;
+        }
+        public void resetCounter()
+        {
+            counter = 1;
+        }
+        public string returnChar()
+        {
+            return input;
+        }
+        public int returnCounter()
+        {
+            return counter;
         }
     }
 }
