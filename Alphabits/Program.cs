@@ -12,30 +12,30 @@ namespace Alphabits
         {
             ConsoleKeyInfo enteredKey;         
             Alphas alpha = new Alphas();
-            int counter = 1;
             bool winner = false;
 
             Console.Write("Type all the letters of the alphabet consecutively. Hit Esc if you want to quit.\n");
             do 
             {
                 enteredKey = Console.ReadKey();
-                string input = enteredKey.Key.ToString().ToLower();
+                alpha.addChar(enteredKey.Key.ToString().ToLower());
 
-                if (input == alpha.alphabet[counter-1])
+                if (alpha.returnChar() == alpha.alphabet[alpha.returnCounter()-1])
                 {
-                    Console.WriteLine($"\n   Nice! You've gotten {counter} right so far. Keep it up. ");
-                    counter += 1;
-                    if (input == "z")
+                    Console.WriteLine($"\n   Nice! You've gotten {alpha.returnCounter()} right so far. Keep it up. ");
+                    alpha.listLength();
+                    if (alpha.returnChar() == "z")
                     {
                         Console.BackgroundColor = ConsoleColor.Red;
                         Console.WriteLine("\n                      Winner winner, chicken dinner.");
-                        winner = false;
+                        winner = true;
+                        alpha.resetCounter();
                     }
                 }
                 else
                 {
                     Console.WriteLine("\n   Lock it up sausage fingers. Time to start over.");
-                    counter = 1;
+                    alpha.resetCounter();
                 }
             } while (enteredKey.Key != ConsoleKey.Escape);
         }
