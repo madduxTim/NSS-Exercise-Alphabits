@@ -10,31 +10,32 @@ namespace Alphabits
     {
         static void Main(string[] args)
         {
-            string[] alphabet = new string[26] {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
             ConsoleKeyInfo enteredKey;         
             Alphas alpha = new Alphas();
-            int counter = 0;
+            int counter = 1;
+            bool winner = false;
 
-            //bool winner = false;
-
-            Console.Write("Please, begin typing all the letters of the alphabet. Hit Esc if you want to quit.\n");
+            Console.Write("Type all the letters of the alphabet consecutively. Hit Esc if you want to quit.\n");
             do 
             {
                 enteredKey = Console.ReadKey();
                 string input = enteredKey.Key.ToString().ToLower();
 
-                for (int i = 0; i < alphabet.Length; i++)
+                if (input == alpha.alphabet[counter-1])
                 {
-                    //Console.WriteLine($"\nYou pressed the {enteredKey.Key.ToString().ToLower()} key");
-                    if (input == alphabet[i] && counter == i) 
+                    Console.WriteLine($"\n   Nice! You've gotten {counter} right so far. Keep it up. ");
+                    counter += 1;
+                    if (input == "z")
                     {
-                        Console.WriteLine("\nNice! you nailed it! Keep going" + "Here's i =" + i + "and counter " + counter);
-                        counter += 1;
-                        //break;
-                    } else if (input != alphabet[i] || counter != i)
-                    {
-                        Console.WriteLine("Bummer");
+                        Console.BackgroundColor = ConsoleColor.Red;
+                        Console.WriteLine("\n                      Winner winner, chicken dinner.");
+                        winner = false;
                     }
+                }
+                else
+                {
+                    Console.WriteLine("\n   Lock it up sausage fingers. Time to start over.");
+                    counter = 1;
                 }
             } while (enteredKey.Key != ConsoleKey.Escape);
         }
