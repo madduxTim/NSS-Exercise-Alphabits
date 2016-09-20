@@ -8,7 +8,6 @@ namespace Alphabits
 {
     public class Alphas
     {
-        List<string> entries = new List<string>();
         private string input;
         private int counter = 1;
         public string[] alphabet = new string[26] { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
@@ -32,6 +31,7 @@ namespace Alphabits
             //return input;
             return entries.Last();
         }
+        public List<string> entries = new List<string>();
         public string returnAllEntries()
         {
             string allEntries = "";
@@ -39,7 +39,8 @@ namespace Alphabits
             {
                 allEntries += entry;
             }
-            return allEntries;
+            return String.Join("", entries);
+            //return allEntries;
         }
         public int returnCounter()
         {

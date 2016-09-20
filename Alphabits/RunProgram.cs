@@ -1,30 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Speech.Synthesis;
 using System.Text;
 using System.Threading.Tasks;
-using System.Speech.Synthesis;
 
 namespace Alphabits
 {
-    class Program
+    public class RunProgram
     {
-        static void Main(string[] args)
-        {
-            SpeechSynthesizer speech = new SpeechSynthesizer();
-            ConsoleKeyInfo enteredKey;         
-            Alphas alpha = new Alphas();
-            //bool winner = false;
 
-            string beginMsg = "Type all the letters of the alphabet consecutively. Hit Esc if you want to quit.\n";
-            Console.WriteLine(beginMsg);
-            //speech.Speak(beginMsg);
-            do 
+        public static ConsoleKeyInfo RunProgramBlah(Alphas alpha, SpeechSynthesizer speech)
+        {
+            ConsoleKeyInfo enteredKey;
+            do
             {
                 enteredKey = Console.ReadKey();
                 alpha.addChar(enteredKey.Key.ToString().ToLower());
 
-                if (alpha.returnChar() == alpha.alphabet[alpha.returnCounter()-1])
+                if (alpha.returnChar() == alpha.alphabet[alpha.returnCounter() - 1])
                 {
                     Console.WriteLine($"\n   Nice! You've gotten {alpha.returnCounter()} right so far. Keep it up. ");
                     //speech.Speak($"\n   Nice! You've gotten {alpha.returnCounter()} right so far. Keep it up. ");
@@ -32,7 +26,7 @@ namespace Alphabits
                     alpha.counterAdd();
                     if (alpha.returnChar() == "z")
                     {
-                        Console.WriteLine(alpha.returnAllEntries()); 
+                        alpha.returnAllEntries();
                         Console.BackgroundColor = ConsoleColor.Red;
                         Console.WriteLine("\n                      Winner winner, chicken dinner.                      ");
                         speech.Speak("Winner winner, chicken dinner.");
@@ -48,6 +42,7 @@ namespace Alphabits
                     alpha.resetCounter();
                 }
             } while (enteredKey.Key != ConsoleKey.Escape);
+            return enteredKey;
         }
     }
 }
